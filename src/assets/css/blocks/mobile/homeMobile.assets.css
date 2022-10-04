@@ -1,0 +1,204 @@
+@media only screen and (max-width: 660px) 
+{
+    .home-base
+    {
+        flex-direction: column;
+        height: 90%;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .home-head-core
+    {
+        height: 40%;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 2em;
+    }
+
+    .home-head-info
+    {
+        width: 90%;
+        align-items: center;
+        height: 30%;
+        justify-content: center;
+    }
+
+    .home-head-title, .home-head-discount { font-size: 20px; }
+    .home-head-start, .home-head-end { font-size: 16px; }
+    .home-head-remaining-core
+    {
+        align-items: center;
+        height: 10%;
+        width: 90%;
+    }
+
+    .home-head-time { font-size: 24px; }
+    .home-head-data-core 
+    {
+        align-items: center;
+        justify-content: center;
+        height: 30%;
+        width: 90%;
+    }
+
+    .home-head-data-price, .home-head-data-token
+    {
+        height: 100%;
+        align-items: center;
+    }
+    .home-head-data-desc, .home-head-data-title
+    { 
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+
+
+    .home-content-core
+    {
+        height: 55%;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .home-content-logo-core
+    {
+        height: 30%;
+        width: 100%;
+    }
+    .home-video
+    {
+        height: 100%;
+        width: 60%;
+    }
+
+    .home-content-loading-core
+    {
+        height: 60%;
+        gap: 1em;
+        justify-content: space-between;
+    }
+    .home-head-button
+    {
+        order: 3;
+        width: 80%;
+        height: 20%;
+        justify-content: center;
+    }
+    .home-loading-bar-core
+    {
+        gap: 10px;
+        height: 30%;
+        width: 80%;
+    }
+    .home-loading-bar-title { font-size: 12px;}
+    .home-loading-bar-desc { font-size: 10px;}
+
+    .shop-items-button 
+    { 
+        width: 30%; 
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 1500px) and (min-width: 661px) 
+{
+    .home-base
+    {
+        flex-direction: column;
+        height: 90%;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .home-head-core
+    {
+        height: 40%;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 2em;
+    }
+
+    .home-head-info
+    {
+        width: 80%;
+        align-items: center;
+        height: 30%;
+        justify-content: center;
+    }
+
+    .home-head-title, .home-head-discount { font-size: 20px; }
+    .home-head-start, .home-head-end { font-size: 16px; }
+    .home-head-remaining-core
+    {
+        align-items: center;
+        height: 10%;
+        width: 80%;
+    }
+
+    .home-head-time { font-size: 24px; }
+    .home-head-data-core 
+    {
+        align-items: center;
+        justify-content: center;
+        height: 30%;
+        width: 80%;
+    }
+
+    .home-head-data-price, .home-head-data-token
+    {
+        height: 100%;
+        align-items: center;
+    }
+    .home-head-data-desc, .home-head-data-title { font-size: 16px; }
+
+
+
+    .home-content-core
+    {
+        height: 55%;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .home-content-logo-core
+    {
+        height: 30%;
+        width: 100%;
+    }
+    .home-video
+    {
+        z-index: -1;
+        position: relative;
+        height: auto;
+        width: 35%;
+    }
+
+    .home-content-loading-core
+    {
+        height: 60%;
+        gap: 1em;
+        justify-content: space-between;
+    }
+    .home-head-button
+    {
+        order: 3;
+        width: 60%;
+        height: 20%;
+        justify-content: center;
+    }
+    .home-loading-bar-core
+    {
+        gap: 10px;
+        height: 30%;
+        width: 50%;
+    }
+    .home-loading-bar-title { font-size: 16px;}
+    .home-loading-bar-desc { font-size: 14px;}
+
+    
+}
+@media only screen and (max-width: 2560px) and (min-width: 1921px)
+{
+    
+}

@@ -11,6 +11,7 @@ import network from 'contracts/network.contracts.js'
 import ContractHelper from "helpers/contract.helper"
 import Address from 'contracts/address.contracts.json'
 import Language from 'assets/data/language.json'
+import LoadingHelper from 'helpers/loadingData.helpers.js'
 import { ethers, providers } from 'ethers'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -21,22 +22,13 @@ const MapStateToProps = (state) => {
   return { 
     address: state.login.address,
     language: state.login.language,
-    crestPrice: state.dashboard.crestPrice,
-    maxUserToken: state.dashboard.maxUserToken,
-    maxToken: state.dashboard.maxToken,
-    isWhitelist: state.dashboard.isWhitelist,
-    remainingToken: state.dashboard.remainingToken,
-    allowance: state.dashboard.allowance,
-    stableBalance: state.dashboard.stableBalance,
-    crestBalance: state.dashboard.crestBalance,
-    crestBuy: state.dashboard.crestBuy,
   }; 
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      loginAction: (data) => { dispatch(LoginActions(data)); },
-      dashboardAction: (data) => { dispatch(DashboardActions(data)); },
+    loginAction: (data) => { dispatch(LoginActions(data)); },
+    dashboardAction: (data) => { dispatch(DashboardActions(data)); },
   };
 };
 
@@ -49,25 +41,15 @@ class Navbar extends React.Component
 
       this.state = 
       {
+        address: this.props.address,
+        language: this.props.language,
         isMetamaskSupported: false,
         isLoggedIn: false,
-        language: this.props.language,
-        currentPage: props.currentPage,
-
-        address: this.props.address,
-        crestPrice: this.props.crestPrice,
-        maxUserToken: this.props.maxUserToken,
-        maxToken: this.props.maxToken,
-        isWhitelist: this.props.isWhitelist,
-        remainingToken: this.props.remainingToken,
-        allowance: this.props.allowance,
-        stableBalance: this.props.stableBalance,
-        crestBalance: this.props.crestBalance,
-        crestBuy: this.props.crestBuy,
         interval: null,
       }
 
       this.handleChange = this.handleChange.bind(this)
+      this.handleChangeLink = this.handleChangeLink.bind(this)
   }
 
   async UNSAFE_componentWillMount() 
@@ -80,19 +62,7 @@ class Navbar extends React.Component
         this.state.isLoggedIn = true 
         const contractHelper = new ContractHelper()
         let provider = await contractHelper.getProvider()
-        let data = 
-        {
-          crestPrice : await contractHelper.getCrestPrice(provider),
-          maxUserToken : await contractHelper.getMaxUserToken(provider, 6),
-          maxToken : await contractHelper.getMaxToken(provider, 6),
-          isWhitelist : await contractHelper.getIsWhitelist(provider),
-          remainingToken : await contractHelper.getRemainingToken(provider, 6),
-          crestBuy : await contractHelper.getUserBuyToken(provider, this.state.address, 6),
-          stableBalance : await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 6),
-          crestBalance : await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 6),
-          allowance : await contractHelper.getAllowance(provider, this.state.address, Address.stable),
-        }
-        this.props.dashboardAction({data: data, action: "save-data"})
+        
         if(this.state.interval == null) this.state.interval = setInterval(async () => 
         {
           let remainingToken = await contractHelper.getRemainingToken(provider, 6)
@@ -125,28 +95,18 @@ class Navbar extends React.Component
   handleChange(event)
   {
     let target = event.target
-    if(target.name == "french") 
-    {
-      document.getElementById("french").checked = true
-      document.getElementById("english").checked = false
-      document.getElementById("japanese").checked = false
-      this.props.loginAction({language: "fr", action: "language"})
-    
-    }else if(target.name == "english") 
-    {
-      document.getElementById("french").checked = false
-      document.getElementById("english").checked = true
-      document.getElementById("japanese").checked = false
-      this.props.loginAction({language: "en", action: "language"})
-    
-    }else if(target.name == "japanese") 
-    {
-      document.getElementById("french").checked = false
-      document.getElementById("english").checked = false
-      document.getElementById("japanese").checked = true
-      this.props.loginAction({language: "jp", action: "language"})
-    
-    }
+    if(target.id == "french") this.props.loginAction({language: "fr", action: "language"})
+    else if(target.id == "english") this.props.loginAction({language: "en", action: "language"})
+    else if(target.id == "default") this.props.loginAction({language: "en", action: "language"})
+  }
+
+  handleChangeLink(event)
+  {
+    let target = event.target
+    if(target.id == "opt2") window.location='https://playcrest.xyz'
+    else if(target.id == "opt3") window.location='https://medium.com/@playCrest'
+    else if(target.id == "opt4") window.location='https://twitter.com/playCrest'
+    else if(target.id == "opt5") window.location='https://discord.com/invite/mUHGNqN8Vj'
   }
 
   
@@ -165,21 +125,13 @@ class Navbar extends React.Component
         {
           this.state.isLoggedIn = true
           this.props.loginAction({address: await newProvider.getSigner().getAddress(), action: 'address'})
-
+          this.props.dashboardAction({loading : {}, action: "start-loading"})
+          
           const contractHelper = new ContractHelper()
-          let data = 
-          {
-            crestPrice : await contractHelper.getCrestPrice(newProvider),
-            maxUserToken : await contractHelper.getMaxUserToken(newProvider, 6),
-            maxToken : await contractHelper.getMaxToken(newProvider, 6),
-            isWhitelist : await contractHelper.getIsWhitelist(newProvider),
-            remainingToken : await contractHelper.getRemainingToken(newProvider, 6),
-            crestBuy : await contractHelper.getUserBuyToken(newProvider, this.state.address, 6),
-            stableBalance : await contractHelper.getBalanceOf(newProvider, Address.stable, this.state.address, 6),
-            crestBalance : await contractHelper.getBalanceOf(newProvider, Address.token, this.state.address, 6),
-            allowance : await contractHelper.getAllowance(newProvider, this.state.address, Address.stable),
-          }        
-          this.props.dashboardAction({data: data, action: "save-data"})
+          const loadingHelper = new LoadingHelper()
+
+          await loadingHelper.loadAllContractFunction(await newProvider.getSigner().getAddress(), newProvider, this.props)
+          
           if(this.state.interval == null) this.state.interval = setInterval(async () => 
           {
             let remainingToken = await contractHelper.getRemainingToken(newProvider, 6)
@@ -200,56 +152,57 @@ class Navbar extends React.Component
     {
       
       return(
-          <div className="navbar flex row">
+        <div className="navbar flex row">
 
-            <div className="navbar-logo flex row center">
-              <img className="logo-crest" src={Logo} alt={Logo} />  
-            </div>
-
-            <div className="navbar-core flex row">
-
-                
-                <div className="navbar-select" tabIndex="1">
-                  <input name="english" className="navbar-input" type="radio" id="english" checked onChange={event => {}} onClick={this.handleChange}/>
-                  <label htmlFor="english" className="navbar-option">English</label>
-                  <input name="french" className="navbar-input" type="radio" id="french" onChange={event => {}} onClick={this.handleChange}/>
-                  <label htmlFor="french" className="navbar-option">French</label>
-                  <input name="japanese" className="navbar-input" type="radio" id="japanese" onChange={event => {}} onClick={this.handleChange}/>
-                  <label htmlFor="japanese" className="navbar-option navbar-option-last">Don't click</label>
-                </div>
-
-
-                <div className="navbar-select" tabIndex="1">
-                  <input name="Charts" className="navbar-input" type="radio" id="opt1" checked onChange={event => {}}/>
-                  <label htmlFor="opt1" className="navbar-option"> { Language[this.state.language].navbar.selectDocs.chart } </label>
-                  <input name="Documentation" className="navbar-input" type="radio" id="opt2" onChange={event => {}}/>
-                  <label htmlFor="opt2" className="navbar-option">{ Language[this.state.language].navbar.selectDocs.doc }</label>
-                  <input name="Disclaimer" className="navbar-input" type="radio" id="opt3" onChange={event => {}}/>
-                  <label htmlFor="opt3" className="navbar-option">{ Language[this.state.language].navbar.selectDocs.disclaimer }</label>
-                  <input name="Teams" className="navbar-input" type="radio" id="opt3" onChange={event => {}}/>
-                  <label htmlFor="opt3" className="navbar-option navbar-option-last">{ Language[this.state.language].navbar.selectDocs.team }</label>
-                </div>
-                
-            </div>
-
-            <div className="navbar-title flex row center">
-              <img className="title-crest" src={LogoName} alt={LogoName} />
-            </div>
-
-            
-            <div className="navbar-button flex row">
-              <div className="navbar-button-core flex row">
-                <button className="button market-button flex row center"> <p>{ Language[this.state.language].navbar.buyButton }</p> </button>
-                {
-                  this.state.address !== "" 
-                  ?<div className="navbar-address-core flex row center"><p className='navbar-address'>{ this.state.address.substr(0, 6) + '...' +  this.state.address.substr( this.state.address.length - 6,  this.state.address.length)  }</p></div>
-                  :<button className="button dapp-button flex row center" onClick={() => this.connectWallet()}> <p>Connect Wallet</p> </button>
-                }
-                
-              </div>
-            </div>
-
+          <div className="navbar-logo flex row center">
+            <img className="logo-crest" src={Logo} alt={Logo} />  
           </div>
+
+          <div className="navbar-core flex row">
+
+              
+            <form className="navbar-select" tabIndex="1" onChange={this.handleChange}>
+              <input name="language-select" className="navbar-input" type="radio" id="default" defaultChecked/>
+              <label htmlFor="default" className="navbar-option">{ Language[this.state.language].navbar.selectLanguage.default }</label>
+              <input name="language-select" className="navbar-input" type="radio" id="english"/>
+              <label htmlFor="english" className="navbar-option">English</label>
+              <input name="language-select" className="navbar-input" type="radio" id="french"/>
+              <label htmlFor="french" className="navbar-option">French</label>
+            </form>
+
+
+            <form className="navbar-select" tabIndex="1" onChange={this.handleChangeLink}>
+              <input name="doc-select" className="navbar-input" type="radio" id="opt1" defaultChecked/>
+              <label htmlFor="opt1" className="navbar-option"> { Language[this.state.language].navbar.selectDocs.default } </label>
+              <input name="doc-select" className="navbar-input" type="radio" id="opt2"/>
+              <label htmlFor="opt2" className="navbar-option"> {Language[this.state.language].navbar.selectDocs.website } </label>
+              <input name="doc-select" className="navbar-input" type="radio" id="opt3"/>
+              <label htmlFor="opt3" className="navbar-option"> {Language[this.state.language].navbar.selectDocs.doc } </label>
+              <input name="doc-select" className="navbar-input" type="radio" id="opt4"/>
+              <label htmlFor="opt4" className="navbar-option"> {Language[this.state.language].navbar.selectDocs.twitter }</label>
+              <input name="doc-select" className="navbar-input" type="radio" id="opt5"/>
+              <label htmlFor="opt5" className="navbar-option"> {Language[this.state.language].navbar.selectDocs.discord } </label>
+            </form>
+              
+          </div>
+
+          <div className="navbar-title flex row center">
+            <img className="title-crest" src={LogoName} alt={LogoName} />
+          </div>
+
+          <div className="navbar-button flex row">
+            <div className="navbar-button-core flex row">
+              <button className="button market-button flex row center"> <p className="button-market-title">{ Language[this.state.language].navbar.buyButton }</p> </button>
+              {
+                this.state.address !== "" 
+                ?<div className="navbar-address-core flex row center"><p className='navbar-address'>{ this.state.address.substr(0, 6) + '...' +  this.state.address.substr( this.state.address.length - 6,  this.state.address.length)  }</p></div>
+                :<button className="button dapp-button flex row center" onClick={() => this.connectWallet()}> <p>Connect Wallet</p> </button>
+              }
+              
+            </div>
+          </div>
+
+        </div>
 
       )
     }

@@ -4,19 +4,19 @@ import 'assets/animation/keyframes.assets.css'
 import 'assets/css/index.assets.css'
 import 'assets/css/global.assets.css'
 import 'assets/css/popup/buy.assets.css'
+import 'assets/css/popup/mobile/buyMobile.assets.css'
 import { connect } from 'react-redux'
 import { LoginActions } from 'store/actions/login.actions.js'
 import { DashboardActions } from 'store/actions/dashboard.actions.js'
-import Ruby from 'assets/img/ruby.mp4'
-import Amber from 'assets/img/amber.mp4'
-import Amethyst from 'assets/img/amethyst.mp4'
 import ContractHelper from "helpers/contract.helper.js"
 import Address from 'contracts/address.contracts.json'
+import LogoVideo from 'assets/img/swap-dev.mp4'
 import Language from 'assets/data/language.json'
 
 const MapStateToProps = (state) => {
     return { 
       address: state.login.address,
+      language: state.login.language,
       crestPrice: state.dashboard.crestPrice,
       maxUserToken: state.dashboard.maxUserToken,
       maxToken: state.dashboard.maxToken,
@@ -45,6 +45,7 @@ class BuyPopup extends React.Component
         this.state = 
         {
             address: this.props.address,
+            language: this.props.language,
             crestPrice: this.props.crestPrice,
             maxUserToken: this.props.maxUserToken,
             maxToken: this.props.maxToken,
@@ -137,33 +138,62 @@ class BuyPopup extends React.Component
     {
         let contractHelper = new ContractHelper()
         return(
-            <Popup trigger={<button className="button shop-items-button">Buy $Crest</button>} modal nested>
+            <Popup trigger={<button className="button shop-items-button">{ Language[this.state.language].buyPopup.buy } $Crest</button>} modal nested>
             {
                 close => (
-                    <div className="buy-popup-base flex column">
+                    <div className="buy-popup-base flex row">
                         
-                        <div className="buy-popup-input-core flex column center">
-                            <div className="buy-popup-input-head flex row">
-                                <p className="buy-popup-input-title">Amount</p>
-                                <p className="buy-popup-input-desc">balance: {contractHelper.getNb(this.state.crestBalance, 2)}</p>
+                        <div className="buy-popup-head flex column">
+
+                            <div className="buy-popup-head-core flex column">
+                                <h1 className="buy-popup-head-title no-margin">{ Language[this.state.language].buyPopup.title } $CREST</h1>
+
+                                <div className="buy-popup-head-exchange flex column">
+                                    <h1 className="buy-popup-exchange-title no-margin">{ Language[this.state.language].buyPopup.exchange }</h1>
+                                    <div className="buy-popup-exchange-core flex row center">
+                                        <p className="buy-popup-exchange-desc no-margin">1 $Crest</p>
+                                        <div className="buy-popup-exchange-separator" />
+                                        <p className="buy-popup-exchange-desc no-margin">10 $Busd</p>
+                                    </div>
+                                </div>
                             </div>
-                            <input className="buy-popup-input" placeholder="Amount CREST" type="text" name="crest" id="balanceIn" onKeyPress={this.checkNumber} onChange={this.handleChange}></input>
+
+                            <div className="buy-popup-input-core flex column center">
+
+                                <div className="buy-popup-base-core flex column center">
+                                    <div className="buy-popup-input-head flex row">
+                                        <p className="buy-popup-input-title no-margin">{ Language[this.state.language].buyPopup.amount }</p>
+                                        <p className="buy-popup-input-desc no-margin">{ Language[this.state.language].buyPopup.balance } : {contractHelper.getNb(this.state.crestBalance, 2)}</p>
+                                    </div>
+                                    <input className="buy-popup-input" placeholder="Amount CREST" type="text" name="crest" id="balanceIn" onKeyPress={this.checkNumber} onChange={this.handleChange}></input>
+                                </div>
+                                
+                                <div className="buy-popup-base-core flex column center">
+                                    <div className="buy-popup-balance-head flex row">
+                                        <p className="buy-popup-balance-title no-margin">{ Language[this.state.language].buyPopup.cost } BUSD</p>
+                                        <p className="buy-popup-balance-desc no-margin">{ Language[this.state.language].buyPopup.balance } : {contractHelper.getNb(this.state.stableBalance, 2)}</p>
+                                    </div>
+                                    <div className="buy-popup-balance">{this.state.cost}</div>
+                                </div>
+
+                            </div>
+
+                            
+
+                            <div className="buy-popup-button-core flex center">              
+                                {
+                                    this.state.allowance
+                                    ? <button className="button buy-popup-button" onClick={() => this.buyCrest()}>{ Language[this.state.language].buyPopup.buy }</button>
+                                    : <button className="button buy-popup-button" onClick={() => this.setAllowance()}>{ Language[this.state.language].buyPopup.approve }</button>
+                                }
+                            </div>
+
                         </div>
 
-                        <div className="buy-popup-balance-core flex column center">
-                            <div className="buy-popup-balance-head flex row">
-                                <p className="buy-popup-balance-title">Cost BUSD</p>
-                                <p className="buy-popup-balance-desc">balance: {contractHelper.getNb(this.state.stableBalance, 2)}</p>
-                            </div>
-                            <div className="buy-popup-balance">{this.state.cost}</div>
-                        </div>
-
-                        <div className="buy-popup-button-core flex center">              
-                            {
-                                this.state.allowance
-                                ? <button className="button buy-popup-button" onClick={() => this.buyCrest()}>Buy</button>
-                                : <button className="button buy-popup-button" onClick={() => this.setAllowance()}>Approve</button>
-                            }
+                        <div className="buy-popup-video-core">
+                            <video playsInline className="buy-popup-video" autoPlay muted loop>
+                                <source src={LogoVideo} type="video/mp4" />
+                            </video>
                         </div>
                             
                     </div>

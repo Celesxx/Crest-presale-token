@@ -5,6 +5,10 @@ export const dashboardSlice = createSlice(
   name: 'dashboard',
   initialState: 
   {
+    startLoading: false,
+    endLoading: false,
+    loading: 0,
+    loadingMax: 13,
     crestPrice: 
     {
         public: null,
@@ -43,9 +47,24 @@ export const dashboardSlice = createSlice(
         }
         break;
 
+        case 'loading':
+            state.loading += 1
+            if(state.loading == state.loadingMax) { state.loadingOver = true }
+            break
+
+        case 'start-loading': 
+          state.startLoading = true
+          break
+
+        case 'end-loading': 
+          state.loading = 0
+          state.startLoading = false
+          state.endLoading = false
+          break
+
         default:
-            console.log(`wrong action !`)
-            break;            
+          console.log(`wrong action !`)
+          break;            
       }
     },
   },

@@ -1,174 +1,91 @@
 {
     "en":
     {
-        "dashboard":
+        "home":
         {
-            "protocolTitle": "Protocol",
-            "personalTitle": "Personal",
-            "crestPrice": "$CREST Price",
-            "marketcap": "Market Cap",
-            "totalNft": "Total NFT's",
-            "totalSupply": "Total Supply",
-            "totalBurn": "Total Token Burn"
-        },
-
-        "personnal":
-        {
-            "protocolTitle": "Protocol",
-            "personalTitle": "Personal",
-            "myNft": "My NFT's",
-            "crestBalance": "My $CREST Balance",
-            "dailyReward": "My Daily Rewards",
-            "pendingReward": "My Pending Rewards",
-            "lockedTitle": "Locked"
+            "headTitleP1": "Presale",
+            "headTitleP2": "Discount",
+            "start": "Start",
+            "end": "End",
+            "remainingTime": "Remaining time",
+            "price": "price",
+            "max": "Max token",
+            "remainingTotal": "Remaining total token available for everyone",
+            "remaininguser": "Remaining token for connected wallet"
         },
 
         "navbar":
         {
             "selectDocs":
             {
-                "chart": "Chart",
-                "doc": "Doc",
-                "disclaimer": "Disclaimer",
-                "team": "Team"
+                "default": "Link",
+                "website": "Website",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "language"
             },
             "buyButton": "Buy/Sell $CREST"
         },
 
-        "leftbar":
+        "buyPopup":
         {
-            "homeTitle": "Home",
-            "dashboard": "Dashboard",
-            "shop": "Shop",
-            "myNft": "My NFT's",
-            "swap": "Swap"
-        },
-
-        "shop":
-        {
-            "title": "Buy a badge",
-            "description": "Collect them all",
-            "badgeDescription": ["The legend says that the sun itself created this badge", "A special stone filled with magic, the main tool of any good magician", "The king of precious stone"],
-            "badgeBuy": "Buy for"
-        },
-
-        "shopPop": 
-        {
-            "price": "Price",
-            "lifetime": "Lifetime",
-            "lifetimeValue": "365 days",
-            "dailyReward": "Daily Rewards",
-            "dailyRoi": "Daily ROI",
-            "totalRoi": "Total ROI",
-            "approveBtn": "Approve",
-            "buyBtn": "BUY"
-        },
-
-        "profile": 
-        {
-            "claimAllBtn": "Claim selected NFT's",
-            "tableTitle": ["NFT's", "ID", "Date", "Claim Date", "ROI Date", "Lifetime", "Rewards", ""],
-            "claimBtn": "Claim"
-        },
-
-        "swap":
-        {
-            "title": "SWAP",
-            "description": "Trade token in an instant",
+            "title": "Buy",
+            "exchange": "Exchange rate",
+            "amount": "Amount",
             "balance": "Balance",
-            "swapBtn": "Swap",
-            "approveBtn": "Approve",
-            "maxBtn": "MAX"
+            "cost": "Cost",
+            "buy": "Buy",
+            "approve": "approve"
         }
+       
     },
     
-    
-
-
-
-
-
 
     "fr":
     {
-        "dashboard":
+        "home":
         {
-            "protocolTitle": "Protocole",
-            "personalTitle": "Personnel",
-            "crestPrice": "Prix du $CREST",
-            "marketcap": "Market Cap",
-            "totalNft": "Total NFT's",
-            "totalSupply": "Total Supply",
-            "totalBurn": "Total Token Burn"
-        },
-
-        "personnal":
-        {
-            "protocolTitle": "Protocole",
-            "personalTitle": "Personnel",
-            "myNft": "Mes NFT's",
-            "crestBalance": "Mon $CREST Balance",
-            "dailyReward": "Mes Récompenses Journalières",
-            "pendingReward": "Mes Récompenses en attente",
-            "lockedTitle": "Locked"
+            "headTitleP1": "Presale",
+            "headTitleP2": "Réduction",
+            "start": "Début",
+            "end": "Fin",
+            "remainingTime": "Temps restant",
+            "price": "prix",
+            "max": "Max token",
+            "remainingTotal": "Token restant pour tout les participants",
+            "remaininguser": "Token restant pour votre wallet"
         },
 
         "navbar":
         {
             "selectDocs":
             {
-                "chart": "Graph",
-                "doc": "Doc",
-                "disclaimer": "Disclaimer",
-                "team": "Équipe"
+                "default": "Lien",
+                "website": "Website",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "langue"
             },
             "buyButton": "Achat/Vente $CREST"
         },
 
-        "leftbar":
+        "buyPopup":
         {
-            "homeTitle": "Accueil",
-            "dashboard": "Dashboard",
-            "shop": "Boutique",
-            "myNft": "Mes NFT's",
-            "swap": "Swap"
-        },
-
-        "shop":
-        {
-            "title": "Acheter un badge",
-            "description": "Collect them all",
-            "badgeDescription": ["The legend says that the sun itself created this badge", "A special stone filled with magic, the main tool of any good magician", "The king of precious stone"],
-            "badgeBuy": "Acheter pour"
-        },
-
-        "shopPop": 
-        {
-            "price": "Prix",
-            "lifetime": "Durée de vie",
-            "lifetimeValue": "365 jours",
-            "dailyReward": "Daily Rewards",
-            "dailyRoi": "Daily ROI",
-            "totalRoi": "Total ROI",
-            "approveBtn": "Approuver",
-            "buyBtn": "Acheter"
-        },
-
-        "profile": 
-        {
-            "claimAllBtn": "Claim les NFTS selectionnés",
-            "tableTitle": ["NFT", "ID", "Date", "Claim Date", "ROI Date", "Lifetime", "Rewards", ""],
-            "claimBtn": "Claim"
-        },
-
-        "swap":
-        {
-            "title": "SWAP",
-            "description": "Échanger vos tokens en un instant",
+            "title": "Acheter du",
+            "exchange": "Taux d'échange",
+            "amount": "Somme",
             "balance": "Balance",
-            "swapBtn": "Swap",
-            "approveBtn": "Approuver",
-            "maxBtn": "MAX"
+            "cost": "Prix",
+            "buy": "Acheter",
+            "approve": "Approuver"
         }
     }
 }

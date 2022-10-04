@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const loginSlice = createSlice(
 {
-  name: 'loginMetamask',
-  initialState: {
+  name: 'login',
+  initialState: 
+  {
     address: "",
-    provider: "",
     language: "en",
   },
 

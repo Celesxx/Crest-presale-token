@@ -1,0 +1,37 @@
+.loading-bar-core
+{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 999;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  -webkit-animation: scale-up-center 0.1s linear; 
+  animation: scale-up-center 0.1s linear;
+}
+
+.loading-bar-base
+{
+  position: relative;
+  height: 30px;
+  width: 570px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: initial;
+}
+
+.loading-bar-inner
+{
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,26,136,1) 0%, rgba(0,133,255,1) 100%);
+  animation: progres 1s linear; 
+  border-radius: 14px !important;
+  z-index: -1;
+  width: var(--widthMax);
+}
+
+.loading-bar-inner-end
+{
+  width: var(--widthMax);
+}
