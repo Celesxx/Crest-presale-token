@@ -1,3 +1,14 @@
+@media only screen and (max-height: 500px) 
+{
+    .popup-content{ height: 80%; }
+    .buy-popup-input, .buy-popup-balance{ font-size: 12px !important; }
+    .buy-popup-balance-desc, .buy-popup-input-desc, .buy-popup-balance-title, .buy-popup-input-title {font-size: 8px !important;}
+    .buy-popup-exchange-desc { font-size: 8px; }
+    .buy-popup-exchange-title { font-size: 12px; }
+    .buy-popup-head-title { font-size: 16px; }
+    .buy-popup-button { font-size: 14px; }
+}   
+
 @media only screen and (max-width: 660px) 
 {
     .popup-content

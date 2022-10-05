@@ -4,6 +4,7 @@
     {
         flex-direction: column;
         height: 90%;
+        width: 100%;
         justify-content: center;
         gap: 0;
     }
@@ -107,6 +108,7 @@
     {
         flex-direction: column;
         height: 90%;
+        width: 100%;
         justify-content: center;
         gap: 0;
     }
@@ -193,8 +195,8 @@
         height: 30%;
         width: 50%;
     }
-    .home-loading-bar-title { font-size: 16px;}
-    .home-loading-bar-desc { font-size: 14px;}
+    .home-loading-bar-title { font-size: 14px;}
+    .home-loading-bar-desc { font-size: 10px;}
 
     
 }

@@ -56,6 +56,7 @@ class BuyPopup extends React.Component
             crestBalance: this.props.crestBalance,
             amountPrice: null,
             cost: null,
+            currentPage : props.currentPage,
             
         }
         this.handleChange = this.handleChange.bind(this)
@@ -100,13 +101,9 @@ class BuyPopup extends React.Component
     {
         let target = event.target
         this.state.amountPrice = target.value
-        console.log(`target price : ${this.state.amountPrice}`)
-
         if(this.state.amountPrice === "") this.state.cost = null
         else if(this.state.whitelist) this.state.cost = parseFloat(this.state.amountPrice) * this.state.crestPrice.private
         else this.state.cost = parseFloat(this.state.amountPrice) * this.state.crestPrice.public
-
-        console.log(`target price : ${this.state.cost}`)
         
         this.forceUpdate()
     }
@@ -138,7 +135,8 @@ class BuyPopup extends React.Component
     {
         let contractHelper = new ContractHelper()
         return(
-            <Popup trigger={<button className="button shop-items-button">{ Language[this.state.language].buyPopup.buy } $Crest</button>} modal nested>
+            
+            <Popup trigger={<button className="button shop-items-button buy-popup-navbar" id={this.state.currentPage}>{ Language[this.state.language].buyPopup.buy } $Crest</button>} modal nested>
             {
                 close => (
                     <div className="buy-popup-base flex row">

@@ -12,6 +12,7 @@ import ContractHelper from "helpers/contract.helper"
 import Address from 'contracts/address.contracts.json'
 import Language from 'assets/data/language.json'
 import LoadingHelper from 'helpers/loadingData.helpers.js'
+import BuyPopup from 'components/popup/buy.popup.jsx'
 import { ethers, providers } from 'ethers'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
@@ -85,7 +86,6 @@ class Navbar extends React.Component
       {
           if (prevProps[key] !== this.props[key])
           {  
-            console.log("test1")
             this.state[key] = this.props[key]
             this.forceUpdate()
           }
@@ -192,7 +192,7 @@ class Navbar extends React.Component
 
           <div className="navbar-button flex row">
             <div className="navbar-button-core flex row">
-              <button className="button market-button flex row center"> <p className="button-market-title">{ Language[this.state.language].navbar.buyButton }</p> </button>
+              <BuyPopup currentPage="navbar"/>
               {
                 this.state.address !== "" 
                 ?<div className="navbar-address-core flex row center"><p className='navbar-address'>{ this.state.address.substr(0, 6) + '...' +  this.state.address.substr( this.state.address.length - 6,  this.state.address.length)  }</p></div>

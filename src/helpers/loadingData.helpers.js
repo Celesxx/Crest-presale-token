@@ -15,7 +15,6 @@ class LoadingHelper
     **/
     async loadAllContractFunction(address, provider, props)
     {
-      console.log("test")
       let contractHelper = new ContractHelper()
     
       props.dashboardAction({loading : {}, action: "loading"})
@@ -43,7 +42,6 @@ class LoadingHelper
 
       await new Promise(r => setTimeout(r, 2000));
       props.dashboardAction({loading : {}, action: "loading"})
-      console.log(data)
       props.dashboardAction({data: data, action: "save-data"})
       props.dashboardAction({loading : {}, action: "end-loading"})
       return

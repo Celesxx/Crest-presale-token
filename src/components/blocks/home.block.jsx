@@ -110,7 +110,7 @@ class Home extends React.Component
             {
               !this.state.isMobile && 
               <div className='home-head-button flex row'>
-                <BuyPopup />
+                <BuyPopup currentPage="home" />
               </div>
             }
 

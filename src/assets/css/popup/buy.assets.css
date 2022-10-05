@@ -31,14 +31,14 @@
     height: 70%;
     width: 60%;
     border: 0;
-    border-right: 2px solid rgb(0, 133, 255) !important;
-    border-left: 2px solid rgba(255, 26, 136, 0.8) !important;
-    background-image: linear-gradient(90deg, #ff1a88, #0085FF), linear-gradient(90deg, #ff1a88, #0085FF) !important;
-    background-size: 100% 2px !important;
-    background-position: 0 0, 0 100% !important;
-    background-repeat: no-repeat !important;
-    border-radius: 22px !important;
-    font-size: 30px;
+    border-right: 2px solid rgb(0, 133, 255);
+    border-left: 2px solid rgba(255, 26, 136, 0.8);
+    background-image: linear-gradient(90deg, #ff1a88, #0085FF), linear-gradient(90deg, #ff1a88, #0085FF);
+    background-size: 100% 2px;
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
+    border-radius: 22px;
+    font-size: 22px;
     font-weight: 900;
 }
 
@@ -67,7 +67,7 @@
 
 .buy-popup-head-title
 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
     text-transform: uppercase;
     text-align: center;
@@ -210,3 +210,23 @@
     width: 100%;
     object-fit: cover;
 }
+
+#navbar
+{
+    all: unset;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    background: black;
+    width: 40%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid white;
+    border-radius: 10px;
+
+}
+    
+#navbar:hover{ transform: scale(0.95, 0.95); }
