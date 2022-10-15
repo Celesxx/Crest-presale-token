@@ -20,6 +20,24 @@ class ContractHelper
 
         return provider
     }
+
+	async getInstance()
+    {
+        const web3Modal = new Web3Modal({ cacheProvider: true });
+        let provider, instance
+        if (web3Modal.cachedProvider) 
+        {
+            instance = await web3Modal.connect()
+            provider = await new ethers.providers.Web3Provider(instance); 
+        }
+        else 
+        {
+            web3Modal = await new Web3Modal({ cacheProvider: true });
+            instance = await web3Modal.connect();
+            provider = await new ethers.providers.Web3Provider(instance); 
+        }
+        return {instance, provider}
+    }
 	
 	getNb(number, decimal) 
     {

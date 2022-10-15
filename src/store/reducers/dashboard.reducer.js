@@ -1,5 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState= 
+{
+  startLoading: false,
+    endLoading: false,
+    loading: 0,
+    loadingMax: 13,
+    crestPrice: 
+    {
+        public: null,
+        private: null,
+    },
+    maxUserToken: null,
+    maxToken: null,
+    isWhitelist: false,
+    remainingToken: null,
+    allowance: false,
+    stableBalance: null,
+    crestBalance: null,
+    crestBuy: null,
+}
+
+
 export const dashboardSlice = createSlice(
 {
   name: 'dashboard',
@@ -54,17 +76,21 @@ export const dashboardSlice = createSlice(
 
         case 'start-loading': 
           state.startLoading = true
+          state.loading = 0
           break
 
         case 'end-loading': 
-          state.loading = 0
           state.startLoading = false
           state.endLoading = false
           break
 
+        case 'reset': 
+          for(const [key, value] of Object.entries(initialState)) state[key] = value
+          break
+
         default:
           console.log(`wrong action !`)
-          break;            
+          break;           
       }
     },
   },

@@ -17,6 +17,7 @@ import { DashboardActions } from 'store/actions/dashboard.actions.js'
 const MapStateToProps = (state) => {
   return { 
     address: state.login.address,
+    activateListener: state.login.activateListener,
   }; 
 };
 
@@ -83,14 +84,14 @@ class LoadingData extends React.Component
                 this.state.isLoggedIn = true
                 this.props.loginAction({address: await newProvider.getSigner().getAddress(), action: 'address'})
                 this.props.dashboardAction({loading : {}, action: "start-loading"})
-
+                this.props.loginAction({activateListener: true, action: 'activateListener'})
                 let loadingHelper = new LoadingHelper()
                 await loadingHelper.loadAllContractFunction(await newProvider.getSigner().getAddress(), newProvider, this.props)
 
             }else 
             {
-            Notiflix.Notify.failure(
-            "Required Network - " + network.chainName, { timeout: 2500, width: '300px', position: 'right-top' });
+                Notiflix.Notify.failure(
+                "Required Network - " + network.chainName, { timeout: 2500, width: '300px', position: 'right-top' });
             }
 
         }else if (window.web3) window.web3 = new Web3(window.web3.currentProvider)
@@ -102,7 +103,7 @@ class LoadingData extends React.Component
         return(
             <div className="restricted-core flex column center">
                 <div className="restricted-card flex column">
-                    <h1 className="restricted-title">Connect your wallet to unlock this panel !</h1>
+                    <h1 className="restricted-title">Connect your wallet to unlock this panel!</h1>
                     <button className="button restricted-button flex row center border-gradient-bluePink" onClick={() => this.connectWallet()}> <p>Connect Wallet</p> </button>
                 </div>
                 

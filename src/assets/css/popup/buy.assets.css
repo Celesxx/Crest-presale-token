@@ -1,8 +1,14 @@
+#popup-root:nth-child(1)
+{
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
 .popup-overlay
 {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
+
 .popup-content
 {
     width: 40%;

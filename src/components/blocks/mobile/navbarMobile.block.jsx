@@ -19,6 +19,7 @@ const MapStateToProps = (state) => {
   return { 
     address: state.login.address,
     language: state.login.language,
+    activateListener: state.login.activateListener,
   }; 
 };
 
@@ -44,6 +45,8 @@ class Navbar extends React.Component
         language: this.props.language,
         address: this.props.address,
         interval: null,
+        listening : false,
+        activateListener: this.props.activateListener,
       };
 
   }
@@ -57,11 +60,15 @@ class Navbar extends React.Component
       { 
         this.state.isLoggedIn = true 
         const contractHelper = new ContractHelper()
-        let provider = await contractHelper.getProvider()
+        const loadingHelper = new LoadingHelper()
+        const {instance, provider} = await contractHelper.getInstance()
+        document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
+        if(this.state.listening !== true) this.addListeners(instance, provider)
 
+        await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
         if(this.state.interval == null) this.state.interval = setInterval(async () => 
         {
-          let remainingToken = await contractHelper.getRemainingToken(provider, 6)
+          let remainingToken = await contractHelper.getRemainingToken(provider, 18)
           this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
         }, 1000)
 
@@ -75,13 +82,20 @@ class Navbar extends React.Component
       this.state.interval = null
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) 
+  async componentDidUpdate(prevProps, prevState, snapshot) 
   {
       for(const [key, value] of Object.entries(this.state))
       {
           if (prevProps[key] !== this.props[key])
           {  
             this.state[key] = this.props[key]
+            if(key === "activateListener" && this.state[key] === true)
+            {
+              let contractHelper = new ContractHelper()
+              const {instance, provider} = await contractHelper.getInstance()
+              document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
+              if(this.state.listening !== true) this.addListeners(instance, provider)
+            }
             this.forceUpdate()
           }
       }
@@ -106,10 +120,12 @@ class Navbar extends React.Component
           const contractHelper = new ContractHelper()
           const loadingHelper = new LoadingHelper()
           await loadingHelper.loadAllContractFunction(await newProvider.getSigner().getAddress(), newProvider, this.props)
-
+         
+          if(this.state.listening !== true) this.addListeners(instance, newProvider)
+          
           if(this.state.interval == null) this.state.interval = setInterval(async () => 
           {
-            let remainingToken = await contractHelper.getRemainingToken(newProvider, 6)
+            let remainingToken = await contractHelper.getRemainingToken(newProvider, 18)
             this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
           }, 1000)
 
@@ -121,6 +137,33 @@ class Navbar extends React.Component
 
       }else if (window.web3) window.web3 = new Web3(window.web3.currentProvider)
       else window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+  }
+
+  async addListeners(instance, provider) 
+  {
+    this.state.listening = true
+    instance.on('accountsChanged', async (accounts) => 
+    {
+      if(this.state.address != "")
+      {
+        let account = accounts[0] !== null && accounts[0] !== undefined ? accounts[0] : ""
+        let loadingHelper = new LoadingHelper()
+        this.props.loginAction({address: account, action: 'address'})
+        await this.props.dashboardAction({data : {}, action: "reset"})
+        if(account != "")
+        {
+          this.props.dashboardAction({loading : {}, action: "start-loading"})
+          await loadingHelper.loadAllContractFunction(accounts[0], provider, this.props)
+        }
+      }
+    })
+    
+    instance.on("disconnect",() => 
+    {
+      instance.close();
+      instance.clearCachedProvider();
+      this.props.loginAction({address: "", action: 'address'})
+    });
   }
 
   toggleMenu()

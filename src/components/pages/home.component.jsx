@@ -36,20 +36,66 @@ class Home extends React.Component
   }
 
 
-  UNSAFE_componentWillMount() 
-  { 
-    window.addEventListener('resize', this.handleWindowSizeChange);
+  UNSAFE_componentWillMount() { window.addEventListener('resize', this.handleWindowSizeChange); }
+  componentWillUnmount() { window.removeEventListener('resize', this.handleWindowSizeChange); }
+  componentDidMount()
+  {
     this.state.width = document.documentElement.clientWidth
-    if(this.state.width <= 1500) this.state.isMobile = true
-    else this.state.isMobile = false
+    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile && this.state.width <= 1500) 
+    {
+      this.state.isMobile = true
+      const root = document.getElementById('root');
+      const home = document.querySelector('.home');
+      if (window.matchMedia("(orientation: landscape)").matches) 
+      {
+        root.style["height"] = "100vw"
+        home.style["height"] = "100vw"
+      }
+      else 
+      {
+        root.style["height"] = "100vh"
+        home.style["height"] = null
+      }
+    }else
+    {
+      this.state.isMobile = false
+      const root = document.getElementById('root');
+      const home = document.querySelector('.home');
+      root.style["height"] = "100vh"
+      home.style["height"] = null
+    }
     this.forceUpdate()
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.handleWindowSizeChange); }
+
   handleWindowSizeChange(event) 
   { 
     this.state.width = document.documentElement.clientWidth
-    if(this.state.width <= 1500) this.state.isMobile = true
-    else this.state.isMobile = false
+    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    console.log("is mobile : ", isMobile)
+    if (isMobile && this.state.width <= 1500) 
+    {
+      this.state.isMobile = true
+      const root = document.getElementById('root');
+      const home = document.querySelector('.home');
+      if (window.matchMedia("(orientation: landscape)").matches) 
+      {
+        root.style["height"] = "100vw"
+        home.style["height"] = "100vw"
+      }
+      else 
+      {
+        root.style["height"] = "100vh"
+        home.style["height"] = null
+      }
+    }else 
+    {
+      this.state.isMobile = false
+      const root = document.getElementById('root');
+      const home = document.querySelector('.home');
+      root.style["height"] = "100vh"
+      home.style["height"] = null
+    }
     this.forceUpdate()
   }
 
@@ -72,14 +118,14 @@ class Home extends React.Component
 
         { this.state.isMobile != true ? <NavbarPresale/> : <NavbarPresaleMobile/> }
         { this.state.isMobile != true && <LeftbarPresale /> }
-        <HomeBlock />
+        <HomeBlock isMobile={this.state.isMobile}/>
         {
           this.state.address === "" &&
           ( <Restricted /> )
         }
         {
-          this.state.startLoading === true && this.state.endLoading === false && this.state.address !== "" &&
-          ( <LoadingData /> )
+          this.state.startLoading === true && this.state.endLoading === false &&
+          ( <LoadingData/> )
         }
 
       

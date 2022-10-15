@@ -7,6 +7,7 @@ export const loginSlice = createSlice(
   {
     address: "",
     language: "en",
+    activateListener: false,
   },
 
   reducers: 
@@ -15,13 +16,20 @@ export const loginSlice = createSlice(
     {
       switch(action.payload.action)
       {
-          case 'address': 
-              state.address = action.payload.address 
-              break;
+        case 'address': 
+          state.address = action.payload.address 
+          break;
 
-          case 'language':
-              state.language = action.payload.language
-              break;
+        case 'language':
+          state.language = action.payload.language
+          break;
+
+        case 'activateListener':
+          state.activateListener = action.payload.activateListener
+          break;
+
+        default: 
+          break;
       }
     },
   },

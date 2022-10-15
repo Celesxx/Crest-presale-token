@@ -9,7 +9,7 @@
     .buy-popup-button { font-size: 14px; }
 }   
 
-@media only screen and (max-width: 660px) 
+@media only screen and (max-width: 660px), only screen and (max-width: 660px) and (max-height: 660px) and (orientation: landscape) 
 {
     .popup-content
     {
@@ -48,12 +48,12 @@
     .shop-items-button
     { 
         width: 100px; 
-        font-size: 12px;
+        font-size: 12px !important;
     }
     .buy-popup-input-title, .buy-popup-balance-title { font-size: 12px; font-weight: 400;}
 }
 
-@media only screen and (max-width: 1500px) and (min-width: 661px) 
+@media only screen and (max-width: 1500px) and (min-width: 661px), only screen and (max-width: 1500px) and (min-width: 661px) and (max-height: 1500px) and (min-height: 661px) and (orientation: landscape)
 {
     .popup-content { width: 60%;}
     .buy-popup-head-title {font-size: 20px; }
@@ -66,7 +66,7 @@
 
     .shop-items-button
     { 
-        font-size: 18px;
+        font-size: 18px !important;
     }
     
     .buy-popup-input-title, .buy-popup-balance-title { font-size: 12px; font-weight: 400;}

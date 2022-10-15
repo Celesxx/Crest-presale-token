@@ -13,12 +13,12 @@
 
 body 
 {
-    margin: 0;
-    font-family: 'inter-Regular';
+  margin: 0;
+  font-family: 'inter-Regular';
 }
 
 
-
+p, h1, h2, h3, h4, input, a, button { font-family: "inter-Regular"; }
 .flex { display: flex; }
 .row { flex-direction: row; }
 .column { flex-direction: column; }

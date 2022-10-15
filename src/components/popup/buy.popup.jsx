@@ -121,12 +121,12 @@ class BuyPopup extends React.Component
     {
         const contractHelper = new ContractHelper()
         const provider = await contractHelper.getProvider()
-        await contractHelper.setPurchase(provider, this.state.amountPrice, 6)
+        await contractHelper.setPurchase(provider, this.state.amountPrice, 18)
         let data = 
         {
-            stableBalance: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 6),
-            crestBalance: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 6),
-            crestBuy: await contractHelper.getUserBuyToken(provider, this.state.address, 6)
+            stableBalance: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 18),
+            crestBalance: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 18),
+            crestBuy: await contractHelper.getUserBuyToken(provider, this.state.address, 18)
         }
         this.props.dashboardAction({data: data, action: "save-data"})
     }
@@ -136,7 +136,7 @@ class BuyPopup extends React.Component
         let contractHelper = new ContractHelper()
         return(
             
-            <Popup trigger={<button className="button shop-items-button buy-popup-navbar" id={this.state.currentPage}>{ Language[this.state.language].buyPopup.buy } $Crest</button>} modal nested>
+            <Popup trigger={<button className="button shop-items-button buy-popup-navbar" id={this.state.currentPage}>{ Language[this.state.language].buyPopup.buy } $CREST</button>} modal nested>
             {
                 close => (
                     <div className="buy-popup-base flex row">
@@ -149,9 +149,9 @@ class BuyPopup extends React.Component
                                 <div className="buy-popup-head-exchange flex column">
                                     <h1 className="buy-popup-exchange-title no-margin">{ Language[this.state.language].buyPopup.exchange }</h1>
                                     <div className="buy-popup-exchange-core flex row center">
-                                        <p className="buy-popup-exchange-desc no-margin">1 $Crest</p>
+                                        <p className="buy-popup-exchange-desc no-margin">1 $CREST</p>
                                         <div className="buy-popup-exchange-separator" />
-                                        <p className="buy-popup-exchange-desc no-margin">10 $Busd</p>
+                                        <p className="buy-popup-exchange-desc no-margin">10 $BUSD</p>
                                     </div>
                                 </div>
                             </div>

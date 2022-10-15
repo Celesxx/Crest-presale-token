@@ -64,3 +64,9 @@
         width: 30px;
     }
 }
+
+@keyframes progres
+{
+    0%{ width: var(--widthMin); }
+    100%{ width: var(--widthMax); }
+};
