@@ -1,9 +1,9 @@
 import 'assets/css/global.assets.css'
 import 'assets/css/blocks/leftbar.assets.css'
 import React from "react"
-import Twitter from 'assets/img/twitter.png'
-import Medium from 'assets/img/medium.png'
-import Discord from 'assets/img/discord.png'
+import Twitter from 'assets/img/twitter.svg'
+import Medium from 'assets/img/medium.svg'
+import Discord from 'assets/img/discord.svg'
 
 
 class Leftbar extends React.Component 

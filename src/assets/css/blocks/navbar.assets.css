@@ -32,6 +32,12 @@
   height: 70%; 
 }
 
+.logo-crest
+{
+  height: 90%;
+  width: auto;
+}
+
 /* navbar */
 .navbar-select 
 {
@@ -49,12 +55,6 @@
   border-radius: 10px;
 }
 
-.logo-crest
-{
-  height: 100%;
-  width: auto;
-  object-fit: cover;
-}
 
 .navbar-option
 {
@@ -155,6 +155,13 @@
 .navbar-title
 {
   width: 33.3%;
+  height: 100%;
+}
+
+.title-crest
+{
+  width: 33.3%;
+  height: 60%;
 }
 
 .navbar-button 
@@ -194,11 +201,19 @@
 
 .dapp-button
 {
-  height: 40%;
-  width: 40%;
-  background: linear-gradient(223.25deg, #FF1887 6.33%, #0085FF 41.92%, #00FBBF 85.72%);
-  border-radius: 10px !important;
+  background: transparent;
+  background-image: linear-gradient(90deg,#ff1a88,#0085ff),linear-gradient(90deg,#ff1a88,#0085ff);
+  background-position: 0 0,0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
   border: 0;
+  border-left: 2px solid rgba(255,26,136,.8);
+  border-radius: 10px;
+  border-right: 2px solid #0085ff;
+  font-size: 18px;
+  font-weight: 500;
+  height: 40px;
+  width: 40%;
 }
 
 .navbar-address-core

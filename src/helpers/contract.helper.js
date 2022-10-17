@@ -6,9 +6,21 @@ import abiPresaleNFT from 'contracts/abis/PresaleNFT.sol/PresaleNFT.json'
 import abiPresaleWhitelist from 'contracts/abis/PresaleWhitelist.sol/PresaleWhitelist.json'
 import  {ethers, BigNumber, utils, constants } from "ethers"
 import Web3Modal from 'web3modal'
+import Notiflix from 'notiflix'
 
 const { formatUnits, parseUnits } = utils
 
+function displayError(str) {
+	Notiflix.Notify.warning(
+		str,
+		{
+			timeout: 1500,
+			width: '500px',
+			position: 'center-top',
+			fontSize: '22px'
+		}
+	)
+}
 
 class ContractHelper
 {
@@ -94,18 +106,30 @@ class ContractHelper
 
     async setApprove(provider, erc20Addr) 
     {
-        const erc20 = new ethers.Contract(erc20Addr, abiToken, provider)
-		await(await erc20.connect(provider.getSigner())
-			.approve(Address.presaleToken, constants.MaxUint256)
-		).wait()
+		try {
+			const erc20 = new ethers.Contract(erc20Addr, abiToken, provider)
+			await(await erc20.connect(provider.getSigner())
+				.approve(Address.presaleToken, constants.MaxUint256)
+			).wait()
+		} catch(e) {
+			if (e.reason != undefined)
+				displayError(e.reason)
+			throw "Error"
+		}
     }
 
     async setPurchase(provider, amountOut, decimals) 
-    {
-		const presale = new ethers.Contract(Address.presaleToken, abiPresaleToken, provider)
-		await(await presale.connect(provider.getSigner())
-			.purchase(parseUnits(amountOut, decimals))
-		).wait()
+	{
+		try {
+			const presale = new ethers.Contract(Address.presaleToken, abiPresaleToken, provider)
+			await(await presale.connect(provider.getSigner())
+				.purchase(parseUnits(amountOut, decimals))
+			).wait()
+		} catch(e) {
+			if (e.reason != undefined)
+				displayError(e.reason)
+			throw "Error"
+		}
     }
 
 	async getUserBuyToken(provider, userAddr, decimals)

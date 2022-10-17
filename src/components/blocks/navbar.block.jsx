@@ -2,7 +2,7 @@ import 'assets/css/global.assets.css'
 import 'assets/css/blocks/navbar.assets.css'
 import React from "react"
 import Logo from 'assets/img/crest-icon.png'
-import LogoName from 'assets/img/crest-name.png'
+import LogoName from 'assets/img/crest-name.svg'
 import Web3 from 'web3'
 import Notiflix from 'notiflix'
 import Web3Modal from 'web3modal'

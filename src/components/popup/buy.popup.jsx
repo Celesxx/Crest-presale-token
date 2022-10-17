@@ -151,7 +151,7 @@ class BuyPopup extends React.Component
                                     <div className="buy-popup-exchange-core flex row center">
                                         <p className="buy-popup-exchange-desc no-margin">1 $CREST</p>
                                         <div className="buy-popup-exchange-separator" />
-                                        <p className="buy-popup-exchange-desc no-margin">10 $BUSD</p>
+                                        <p className="buy-popup-exchange-desc no-margin">{this.state.isWhitelist ? this.state.crestPrice.private : this.state.crestPrice.public} $BUSD</p>
                                     </div>
                                 </div>
                             </div>
