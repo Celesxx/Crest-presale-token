@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @font-face {
   font-family: "inter-Regular";
   src: local("inter-Regular"),
@@ -19,10 +26,10 @@ body
 
 
 p, h1, h2, h3, h4, input, a, button { font-family: "inter-Regular"; }
-.flex { display: flex; }
-.row { flex-direction: row; }
-.column { flex-direction: column; }
-.center { justify-content: center; align-items: center; }
+.flex { display: -webkit-box; display: -ms-flexbox; display: flex; }
+.row { -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
+.column { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.center { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 .h1 { margin: 0; }
 .unpadding { padding: 0;}
 .unmargin { margin: 0;}
@@ -33,6 +40,12 @@ p, h1, h2, h3, h4, input, a, button { font-family: "inter-Regular"; }
     border: 0;
     border-right: 2px solid rgb(0, 133, 255) !important;
     border-left: 2px solid rgba(255, 26, 136, 0.8) !important;
+    background-image: 
+    -webkit-gradient(linear, left top, right top, from(#ff1a88), to(#0085FF)),
+    -webkit-gradient(linear, left top, right top, from(#ff1a88), to(#0085FF)) !important;
+    background-image: 
+    -o-linear-gradient(left, #ff1a88, #0085FF),
+    -o-linear-gradient(left, #ff1a88, #0085FF) !important;
     background-image: 
     linear-gradient(90deg, #ff1a88, #0085FF),
     linear-gradient(90deg, #ff1a88, #0085FF) !important;
@@ -84,6 +97,8 @@ button
   border: 0;
   border-right: 3px solid rgb(0, 133, 255) !important;
   border-left: 3px solid rgba(255, 26, 136, 0.8) !important;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 26, 136)), to(#0085FF)),-webkit-gradient(linear, left top, right top, from(rgb(255, 26, 136)), to(#00FBBF)) !important;
+  background-image: -o-linear-gradient(left, rgb(255, 26, 136), #0085FF),-o-linear-gradient(left, rgb(255, 26, 136), #00FBBF) !important;
   background-image: linear-gradient(90deg, rgb(255, 26, 136), #0085FF),linear-gradient(90deg, rgb(255, 26, 136), #00FBBF) !important;
   background-size: 100% 2px !important;
   background-position: 0 0, 0 100% !important;
@@ -91,6 +106,7 @@ button
   /* border-radius: 68px !important; */
   color: white;
   font-family: "Infos";
+  -ms-grid-columns: none !important;
   grid-template-columns: none !important;
 }
 
@@ -116,6 +132,8 @@ button
   border: 0;
   border-right: 3px solid rgb(0, 133, 255) !important;
   border-left: 3px solid rgba(255, 26, 136, 0.8) !important;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgb(255, 26, 136)), to(#0085FF)),-webkit-gradient(linear, left top, right top, from(rgb(255, 26, 136)), to(#00FBBF)) !important;
+  background-image: -o-linear-gradient(left, rgb(255, 26, 136), #0085FF),-o-linear-gradient(left, rgb(255, 26, 136), #00FBBF) !important;
   background-image: linear-gradient(90deg, rgb(255, 26, 136), #0085FF),linear-gradient(90deg, rgb(255, 26, 136), #00FBBF) !important;
   background-size: 100% 2px !important;
   background-position: 0 0, 0 100% !important;

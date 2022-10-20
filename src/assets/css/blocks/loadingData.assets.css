@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .loading-bar-core
 {
   position: absolute;
@@ -5,7 +12,8 @@
   height: 100%;
   z-index: 999;
   width: 100%;
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   -webkit-animation: scale-up-center 0.1s linear; 
   animation: scale-up-center 0.1s linear;
 }
@@ -15,8 +23,12 @@
   position: relative;
   height: 30px;
   width: 570px;
-  align-items: flex-start;
-  justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   z-index: initial;
 }
 
@@ -24,8 +36,11 @@
 {
   position: absolute;
   height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255,26,136,1)), to(rgba(0,133,255,1)));
+  background: -o-linear-gradient(left, rgba(255,26,136,1) 0%, rgba(0,133,255,1) 100%);
   background: linear-gradient(90deg, rgba(255,26,136,1) 0%, rgba(0,133,255,1) 100%);
-  animation: progres 1s linear; 
+  -webkit-animation: progres 1s linear;
+          animation: progres 1s linear; 
   border-radius: 14px !important;
   z-index: -1;
   width: var(--widthMax);

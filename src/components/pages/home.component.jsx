@@ -42,7 +42,7 @@ class Home extends React.Component
   {
     this.state.width = document.documentElement.clientWidth
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile && this.state.width <= 1500) 
+    if (isMobile && this.state.width <= 1200) 
     {
       this.state.isMobile = true
       const root = document.getElementById('root');
@@ -72,8 +72,7 @@ class Home extends React.Component
   { 
     this.state.width = document.documentElement.clientWidth
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    console.log("is mobile : ", isMobile)
-    if (isMobile && this.state.width <= 1500) 
+    if (isMobile && this.state.width <= 1200) 
     {
       this.state.isMobile = true
       const root = document.getElementById('root');

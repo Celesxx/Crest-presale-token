@@ -73,7 +73,6 @@ class Home extends React.Component
     var config = { attributes: true, childList: true, characterData: true, attributeOldValue : true, subtree : true, attributeOldValue : true, characterDataOldValue : true };
     observer.observe(targetDateTime, config);
     this.refreshTimer()
-    console.log(this.state.remainingToken)
     document.getElementById('loading-token').style.setProperty('--widthMin',`0`)
     document.getElementById('loading-token').style.setProperty('--widthMax',`${(parseFloat(this.state.maxToken - this.state.remainingToken) / parseFloat(this.state.maxToken) * 100)}%`)
     document.getElementById('loading-token-user').style.setProperty('--widthMin',`0`)

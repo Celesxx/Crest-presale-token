@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @media only screen and (max-height: 500px) 
 {
     .popup-content{ height: 80%; }
@@ -21,7 +28,10 @@
     }
     .buy-popup-base
     {
-        flex-direction: column-reverse;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+            -ms-flex-direction: column-reverse;
+                flex-direction: column-reverse;
         height: 90%;
     }
 
@@ -29,7 +39,9 @@
     {
         height: 75%;
         width: 90%;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
    
     .buy-popup-video-core
@@ -53,7 +65,7 @@
     .buy-popup-input-title, .buy-popup-balance-title { font-size: 12px; font-weight: 400;}
 }
 
-@media only screen and (max-width: 1500px) and (min-width: 661px), only screen and (max-width: 1500px) and (min-width: 661px) and (max-height: 1500px) and (min-height: 661px) and (orientation: landscape)
+@media only screen and (max-width: 1200px) and (min-width: 661px), only screen and (max-width: 1200px) and (min-width: 661px) and (max-height: 1200px) and (min-height: 661px) and (orientation: landscape)
 {
     .popup-content { width: 60%;}
     .buy-popup-head-title {font-size: 20px; }
@@ -75,8 +87,4 @@
         height: 70%;
         width: 45%;
     }
-}
-@media only screen and (max-width: 2560px) and (min-width: 1921px)
-{
-    
 }

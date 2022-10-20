@@ -69,15 +69,24 @@ class Navbar extends React.Component
         
         const {instance, provider} = await contractHelper.getInstance()
         document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
-        if(this.state.listening !== true) this.addListeners(instance, provider)
 
-        await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
-        if(this.state.interval == null) this.state.interval = setInterval(async () => 
+        const chainId = (await provider.getNetwork()).chainId
+        if (chainId == network.chainId) 
         {
-          let remainingToken = await contractHelper.getRemainingToken(provider, 18)
-          this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
-        }, 1000)
+          if(this.state.listening !== true) this.addListeners(instance, provider)
+          await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
+          if(this.state.interval == null) this.state.interval = setInterval(async () => 
+          {
+            let remainingToken = await contractHelper.getRemainingToken(provider, 18)
+            this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
+          }, 1000)
 
+        }else
+        {
+          this.props.loginAction({address: "", action: 'address'})
+          Notiflix.Notify.warning(
+          "Required Network - " + network.chainName, { timeout: 1500, width: '500px', position: 'center-top', fontSize: '22px' });
+        }
       }
     }
   }

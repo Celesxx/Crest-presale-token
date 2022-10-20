@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 
 .navbar
 {
@@ -5,8 +12,11 @@
   top: 0;
   height: 9%;
   width: 100%;
-  align-items: center;
-  justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   background: black;
   z-index: 999;
   border-bottom: 1px solid white;
@@ -20,8 +30,12 @@
 .navbar-core
 { 
   width: 23.3%;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   font-size: 22px;
   height: 40px;
 }
@@ -41,11 +55,21 @@
 /* navbar */
 .navbar-select 
 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background: black;
   width: 30%;
   height: 40px;
@@ -59,20 +83,30 @@
 .navbar-option
 {
   padding: 0 30px 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   overflow: hidden;
   white-space: nowrap;
   visibility: hidden;
-  order: 1;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   font-size: 18px;
 }
   
@@ -87,10 +121,19 @@
 { 
   height: auto; 
   overflow: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -106,7 +149,9 @@
 .navbar-input:checked + label 
 {
   position:relative;
-  order: -1;
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
   visibility: visible;
 }
 
@@ -168,16 +213,24 @@
 { 
   width: 33.3%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .navbar-button-core
 { 
   height: 100%;
   width: 70%; 
-  justify-content: space-evenly;
-  align-items: center;
+  -webkit-box-pack: space-evenly; 
+      -ms-flex-pack: space-evenly; 
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .button
@@ -187,7 +240,7 @@
   font-size: 19px;
 }
 
-.button:hover{ transform: scale(0.95, 0.95); }
+.button:hover{ -webkit-transform: scale(0.95, 0.95); -ms-transform: scale(0.95, 0.95); transform: scale(0.95, 0.95); }
 
 .market-button
 { 
@@ -202,6 +255,8 @@
 .dapp-button
 {
   background: transparent;
+  background-image: -webkit-gradient(linear,left top, right top,from(#ff1a88),to(#0085ff)),-webkit-gradient(linear,left top, right top,from(#ff1a88),to(#0085ff));
+  background-image: -o-linear-gradient(left,#ff1a88,#0085ff),-o-linear-gradient(left,#ff1a88,#0085ff);
   background-image: linear-gradient(90deg,#ff1a88,#0085ff),linear-gradient(90deg,#ff1a88,#0085ff);
   background-position: 0 0,0 100%;
   background-repeat: no-repeat;
@@ -233,9 +288,3 @@
   margin: 0;
   font-weight: 500;
 }
- 
-
-
-
-
-

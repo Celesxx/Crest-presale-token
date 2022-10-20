@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .loading-home
 {
     position: fixed;
@@ -10,5 +17,6 @@
 {
     width: auto;
     height: 60%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
