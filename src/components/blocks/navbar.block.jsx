@@ -71,7 +71,7 @@ class Navbar extends React.Component
         document.getElementById('WEB3_CONNECT_MODAL_ID').remove()
 
         const chainId = (await provider.getNetwork()).chainId
-        if (chainId == network.chainId) 
+        if (chainId == network.chainId && this.props.address === await provider.getSigner().getAddress()) 
         {
           if(this.state.listening !== true) this.addListeners(instance, provider)
           await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
@@ -81,6 +81,20 @@ class Navbar extends React.Component
             this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
           }, 1000)
 
+        }else if(chainId == network.chainId && this.props.address !== await provider.getSigner().getAddress())
+        {
+          let loadingHelper = new LoadingHelper()
+          this.props.loginAction({address: await provider.getSigner().getAddress(), action: 'address'})
+          await this.props.dashboardAction({data : {}, action: "reset"})
+          this.props.dashboardAction({loading : {}, action: "start-loading"})
+          await loadingHelper.loadAllContractFunction(this.props.address, provider, this.props)
+          if(this.state.listening !== true) this.addListeners(instance, provider)
+          if(this.state.interval == null) this.state.interval = setInterval(async () => 
+          {
+            let remainingToken = await contractHelper.getRemainingToken(provider, 18)
+            this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
+          }, 1000)
+        
         }else
         {
           this.props.loginAction({address: "", action: 'address'})
