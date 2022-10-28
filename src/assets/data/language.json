@@ -19,7 +19,7 @@
             "selectDocs":
             {
                 "default": "Link",
-                "website": "Website",
+                "website": "Docs",
                 "discord": "Discord",
                 "twitter": "Twitter",
                 "doc": "Medium"
@@ -43,7 +43,6 @@
         }
        
     },
-    
 
     "fr":
     {
@@ -65,7 +64,7 @@
             "selectDocs":
             {
                 "default": "Lien",
-                "website": "Website",
+                "website": "Docs",
                 "discord": "Discord",
                 "twitter": "Twitter",
                 "doc": "Medium"
@@ -86,6 +85,94 @@
             "cost": "Prix",
             "buy": "Acheter",
             "approve": "Approuver"
+        }
+    },
+
+    "sp":
+    {
+        "home":
+        {
+            "headTitleP1": "Preventa",
+            "headTitleP2": "Reducción",
+            "start": "Inicio",
+            "end": "Final",
+            "remainingTime": "Tiempo restante",
+            "price": "Precio",
+            "max": "Token máximo",
+            "remainingTotal": "Token restante para todos los participantes",
+            "remainingUser": "Token restante para su billetera"
+        },
+
+        "navbar":
+        {
+            "selectDocs":
+            {
+                "default": "Link",
+                "website": "Docs",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "lengua"
+            },
+            "buyButton": "Comprar/Vender $CREST"
+        },
+
+        "buyPopup":
+        {
+            "title": "Comprar",
+            "exchange": "Tasa de cambio",
+            "amount": "Monto",
+            "balance": "Balanza",
+            "cost": "Precio",
+            "buy": "Comprar",
+            "approve": "Aprobar"
+        }
+    },
+
+    "jp":
+    {
+        "home":
+        {
+            "headTitleP1": "プリセール",
+            "headTitleP2": "割引",
+            "start": "始まり",
+            "end": "終わり",
+            "remainingTime": "残り時間",
+            "price": "価格",
+            "max": "最大トークン",
+            "remainingTotal": "すべての参加者に残っているトークン",
+            "remainingUser": "ウォレットの残りのトークン"
+        },
+
+        "navbar":
+        {
+            "selectDocs":
+            {
+                "default": "リンク",
+                "website": "Docs",
+                "discord": "Discord",
+                "twitter": "Twitter",
+                "doc": "Medium"
+            },
+            "selectLanguage":
+            {
+                "default": "言語"
+            },
+            "buyButton": "買い/売り $CREST"
+        },
+
+        "buyPopup":
+        {
+            "title": "買う",
+            "exchange": "為替レート",
+            "amount": "額",
+            "balance": "残高",
+            "cost": "受賞歴",
+            "buy": "買う",
+            "approve": "承認"
         }
     }
 }

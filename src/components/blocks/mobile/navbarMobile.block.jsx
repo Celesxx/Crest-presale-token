@@ -209,10 +209,10 @@ class Navbar extends React.Component
           </label>
 
           <ul className="navbar-mobile">
-              <li><a className="navbar-mobile-item" href="https://playcrest.xyz">Crest</a></li>
-              <li><a className="navbar-mobile-item" href="https://discord.com/invite/mUHGNqN8Vj">Community</a></li>
-              <li><a className="navbar-mobile-item" href="https://medium.com/@playCrest">Doc</a></li>
-              <li><a className="navbar-mobile-item" href="https://twitter.com/playCrest">Twitter</a></li>
+            <li><a className="navbar-mobile-item" href="https://playcrest.gitbook.io/documentation/" target="_blank">Docs</a></li>
+            <li><a className="navbar-mobile-item" href="https://discord.com/invite/mUHGNqN8Vj" target="_blank">Community</a></li>
+            <li><a className="navbar-mobile-item" href="https://medium.com/@playCrest" target="_blank">Medium</a></li>
+            <li><a className="navbar-mobile-item" href="https://twitter.com/playCrest" target="_blank">Twitter</a></li>
           </ul>
 
           <div className='navbar-mobile-wallet-core flex center'>
