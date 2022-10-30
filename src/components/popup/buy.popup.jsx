@@ -163,7 +163,7 @@ class BuyPopup extends React.Component
                                         <p className="buy-popup-input-title no-margin">{ Language[this.state.language].buyPopup.amount }</p>
                                         <p className="buy-popup-input-desc no-margin">{ Language[this.state.language].buyPopup.balance } : {contractHelper.getNb(this.state.crestBalance, 2)}</p>
                                     </div>
-                                    <input className="buy-popup-input" placeholder="Amount CREST" type="text" name="crest" id="balanceIn" onKeyPress={this.checkNumber} onChange={this.handleChange}></input>
+                                    <input className="buy-popup-input" placeholder="Amount $CREST" type="text" name="crest" id="balanceIn" onKeyPress={this.checkNumber} onChange={this.handleChange}></input>
                                 </div>
                                 
                                 <div className="buy-popup-base-core flex column center">

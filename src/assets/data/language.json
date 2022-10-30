@@ -9,9 +9,9 @@
             "end": "End",
             "remainingTime": "Remaining time",
             "price": "price",
-            "max": "Max token",
-            "remainingTotal": "Remaining total token available for everyone",
-            "remainingUser": "Remaining token for connected wallet"
+            "max": "Max tokens",
+            "remainingTotal": "Total remaining presale tokens available",
+            "remainingUser": "Tokens available for connected wallet"
         },
 
         "navbar":
@@ -54,7 +54,7 @@
             "end": "Fin",
             "remainingTime": "Temps restant",
             "price": "prix",
-            "max": "Max token",
+            "max": "Max tokens",
             "remainingTotal": "Token restant pour tout les participants",
             "remainingUser": "Token restant pour votre wallet"
         },
