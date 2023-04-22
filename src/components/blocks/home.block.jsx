@@ -148,6 +148,7 @@ class Home extends React.Component
 
           <div className='home-head-info flex column'>
             <h1 className='home-head-title no-margin no-padding'>{ Language[this.state.language].home.headTitleP1 } <span className='gradient-pink'>$CREST</span></h1>
+            <h1 className='home-head-discount no-margin no-padding'>round 1</h1>
             <h1 className='home-head-discount no-margin no-padding'>10% { Language[this.state.language].home.headTitleP2 }</h1>
             <p className='home-head-start no-margin no-padding'>{`${ Language[this.state.language].home.start } -> 31/10 08:00`}</p>
             <p className='home-head-end no-margin no-padding'>{`${ Language[this.state.language].home.end } -> 06/11 00:00`}</p>

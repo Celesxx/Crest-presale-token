@@ -77,7 +77,7 @@ class Navbar extends React.Component
           await loadingHelper.loadAllContractFunction(this.state.address, provider, this.props)
           if(this.state.interval == null) this.state.interval = setInterval(async () => 
           {
-            let remainingToken = await contractHelper.getRemainingToken(provider, 18)
+            let remainingToken = await contractHelper.getRemainingToken(provider, 6)
             this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
           }, 1000)
 
@@ -91,7 +91,7 @@ class Navbar extends React.Component
           if(this.state.listening !== true) this.addListeners(instance, provider)
           if(this.state.interval == null) this.state.interval = setInterval(async () => 
           {
-            let remainingToken = await contractHelper.getRemainingToken(provider, 18)
+            let remainingToken = await contractHelper.getRemainingToken(provider, 6)
             this.props.dashboardAction({data: {remainingToken: remainingToken}, action: "save-data"})
           }, 1000)
         

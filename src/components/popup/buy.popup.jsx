@@ -102,7 +102,7 @@ class BuyPopup extends React.Component
         let target = event.target
         this.state.amountPrice = target.value
         if(this.state.amountPrice === "") this.state.cost = null
-        else if(this.state.whitelist) this.state.cost = parseFloat(this.state.amountPrice) * this.state.crestPrice.private
+        else if(this.state.isWhitelist) this.state.cost = parseFloat(this.state.amountPrice) * this.state.crestPrice.private
         else this.state.cost = parseFloat(this.state.amountPrice) * this.state.crestPrice.public
         
         this.forceUpdate()
@@ -121,12 +121,12 @@ class BuyPopup extends React.Component
     {
         const contractHelper = new ContractHelper()
         const provider = await contractHelper.getProvider()
-        await contractHelper.setPurchase(provider, this.state.amountPrice, 18)
+        await contractHelper.setPurchase(provider, this.state.amountPrice, 6)
         let data = 
         {
-            stableBalance: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 18),
-            crestBalance: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 18),
-            crestBuy: await contractHelper.getUserBuyToken(provider, this.state.address, 18)
+            stableBalance: await contractHelper.getBalanceOf(provider, Address.stable, this.state.address, 6),
+            crestBalance: await contractHelper.getBalanceOf(provider, Address.token, this.state.address, 6),
+            crestBuy: await contractHelper.getUserBuyToken(provider, this.state.address, 6)
         }
         this.props.dashboardAction({data: data, action: "save-data"})
     }
@@ -151,7 +151,7 @@ class BuyPopup extends React.Component
                                     <div className="buy-popup-exchange-core flex row center">
                                         <p className="buy-popup-exchange-desc no-margin">1 $CREST</p>
                                         <div className="buy-popup-exchange-separator" />
-                                        <p className="buy-popup-exchange-desc no-margin">{this.state.isWhitelist ? this.state.crestPrice.private : this.state.crestPrice.public} $BUSD</p>
+                                        <p className="buy-popup-exchange-desc no-margin">{this.state.isWhitelist ? this.state.crestPrice.private : this.state.crestPrice.public} $USDC</p>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@ class BuyPopup extends React.Component
                                 
                                 <div className="buy-popup-base-core flex column center">
                                     <div className="buy-popup-balance-head flex row">
-                                        <p className="buy-popup-balance-title no-margin">{ Language[this.state.language].buyPopup.cost } BUSD</p>
+                                        <p className="buy-popup-balance-title no-margin">{ Language[this.state.language].buyPopup.cost } USDC</p>
                                         <p className="buy-popup-balance-desc no-margin">{ Language[this.state.language].buyPopup.balance } : {contractHelper.getNb(this.state.stableBalance, 2)}</p>
                                     </div>
                                     <div className="buy-popup-balance">{this.state.cost}</div>
